@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-
+  background: #e5e5e5;
 `
 export const ProductsImg = styled.img`
   width: 100%;
@@ -23,6 +23,15 @@ export const CategoryButton= styled.button`
    font-size: 17px;
    line-height: 20px;
    padding-bottom: 5px;
+`
+
+export const ProductsContainer = styled.div`
+   display: flex;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 20px;
+   padding: 40px;
+   justify-items: center;
+   margin-top: 20px;
 `
 
 

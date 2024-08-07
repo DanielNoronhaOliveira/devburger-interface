@@ -30,6 +30,7 @@ export function Login() {
   });
     
     const onSubmit = async (data) => {
+     
         const response = await toast.promise(
             api.post('/sessions', {
                 email:data.email,
@@ -45,13 +46,10 @@ export function Login() {
                         return 'Seja bem-vindo(a)'
                     },
                 },
-                error: 'Email ou senha incorretos',
-            },
-
+                 error:'Email ou senha incorretos',
+            }, 
         );
-        
-        
-       
+            
         putUserData(data) 
        
     };
