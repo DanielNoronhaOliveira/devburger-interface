@@ -1,8 +1,9 @@
+/*eslint-disable react/prop-types*/
 import PropTypes from 'prop-types'
 import { Container, Image, ProductName, ProductPrice } from './styles'
 import { Button } from '../Button'
 
-function CardProduct({ product }) {
+export function CardProduct({ product }) {
     return (
         <Container>
             <Image src={product.url} alt='imagem do produto'/>
@@ -15,8 +16,9 @@ function CardProduct({ product }) {
     )
 }
 
-export default CardProduct
+ 
 
 CardProduct.prototype = {
     product: PropTypes.object,
 };
+

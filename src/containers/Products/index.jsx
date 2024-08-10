@@ -1,13 +1,14 @@
 
 import { useEffect, useState } from 'react'
 import ProductsLogo from '../../assets/products-log.png'
-import CardProduct from '../../components/CardProduct'
+import { CardProduct } from '../../components'
 import formatCurrency from '../../utils/formatCurrency'
 import api from '../../services/api'
 import { Container, ProductsImg, CategoryButton, CategoriesMenu, ProductsContainer } from './styles'
 export function Products() {
     const [categories, setCategories] = useState([])
     const [products, setProducts] = useState([])
+    const [filteredProducts, setFilteredProducts] = useState([])
     const [activeCategory, setActiveCategory] = useState(0)
 
     useEffect(() => {
@@ -31,6 +32,18 @@ export function Products() {
         loadCategories()
     }, [])
 
+   useEffect(() => {
+    if (activeCategory === 0){
+        setFilteredProducts(products)
+    } else {
+    const newFilteredProducts = products.filter(
+        product => product.category_id === activeCategory
+    )
+
+    setFilteredProducts(newFilteredProducts)
+}
+   }, [activeCategory, products])
+
     return (
         <Container>
             <ProductsImg src={ProductsLogo} alt="logo do produto" />
@@ -50,8 +63,8 @@ export function Products() {
                     ))}
             </CategoriesMenu>
             <ProductsContainer>
-                {products && 
-                 products.map(product => (
+                {filteredProducts && 
+                 filteredProducts.map(product => (
                     <CardProduct key={product.id} product={product} />
                 ))}
 

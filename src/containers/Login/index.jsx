@@ -9,7 +9,7 @@ import { useUser } from '../../hooks/UserContext';
 import { Container, Form, ContainerInput, LeftContainer,  RightContainer, Title, Link } from './styles';
 import Logo from '../../assets/logo.png';
 
-import { Button } from '../../components/Button';
+import { Button } from '../../components/';
 
 export function Login() {
     const { putUserData }= useUser()
@@ -28,11 +28,11 @@ export function Login() {
   } = useForm({
     resolver: yupResolver(schema),
   });
-    
+
     const onSubmit = async (data) => {
-     
+
         const response = await toast.promise(
-            api.post('/sessions', {
+            api.post('/session', {
                 email:data.email,
                 password: data.password,
             }),
@@ -47,11 +47,12 @@ export function Login() {
                     },
                 },
                  error:'Email ou senha incorretos',
-            }, 
+            },
         );
-            
-        putUserData(data) 
-       
+
+      console.log(response)
+        putUserData(response)
+
     };
     return (
         <Container>
@@ -60,7 +61,7 @@ export function Login() {
             </LeftContainer>
             <RightContainer>
                 <Title>
-                    Ola, seja bem vindo ao <span>Dev Burguer !</span> 
+                    Ola, seja bem vindo ao <span>Dev Burguer !</span>
                     <br />
                     Acesse com seu<span> Login e senha.</span>
                 </Title>
@@ -70,13 +71,13 @@ export function Login() {
                         <input type="email" {...register('email')}/>
                         <p>{errors?.email?.message}</p>
                     </ContainerInput>
-                  
+
                     <ContainerInput>
                         <label>Senha</label>
                         <input type="password" {...register('password')}/>
                         <p>{errors?.password?.message}</p>
                     </ContainerInput>
-              
+
                     <Button type="submit">Entrar</Button>
                 </Form>
                 <p>

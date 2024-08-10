@@ -1,9 +1,8 @@
 
 import HomeLogo from '../../assets/home-logo.svg'
-import { CategoryCarousel } from '../../components/CategoryCarousel'
-import { OffersCarousel } from '../../components/OffersCarousel'
-
+import { CategoryCarousel, OffersCarousel } from '../../components'
 import { Container, HomeImg } from './styles'
+
 export function Home(){
 
     return (

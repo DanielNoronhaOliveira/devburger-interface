@@ -1,4 +1,4 @@
-import  Category from '../../assets/category.png'
+import  category from '../../assets/category.png'
 
 import { Container, CategoryImg, ContainerItems, Image, Button } from './styles'
 import api from '../../services/api'
@@ -12,9 +12,10 @@ export function CategoryCarousel(){
         async function loadCategories(){
             const {data} = await api.get('categories')
 
-            setCategories(data)
+          setCategories(data)
+         
         }
-        
+
         loadCategories()
      }, [])
 
@@ -27,18 +28,18 @@ export function CategoryCarousel(){
      ]
     return (
         <Container>
-            <CategoryImg src={Category} alt="logo da categoria" />
+            <CategoryImg src={category} alt="logo da categoria" />
 
             <Carousel itemsToShow={5}
              style={{width: '90%'}}
              breakPoints={breakPoints}>
                 {categories &&
-                  categories.map(Category => {
-                    <ContainerItems key={Category.id}>
-                        <Image src={Category.url} alt='foto da categoria'/>
-                        <Button>{Category.name}</Button>
+                  categories.map(category => (
+                    <ContainerItems key={category.id}>
+                        <Image src={category.url} alt='foto da categoria'/>
+                        <Button>{category.name}</Button>
                     </ContainerItems>
-                  })}
+                  ))}
 
             </Carousel>
         </Container>

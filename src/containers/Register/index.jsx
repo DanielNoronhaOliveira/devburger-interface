@@ -8,7 +8,7 @@ import  api  from '../../services/api';
 import { Container, Form, ContainerInput, LeftContainer, RightContainer, Title, Link } from './styles';
 import Logo from '../../assets/logo.png';
 
-import { Button } from '../../components/Button';
+import { Button } from '../../components';
 
 export function Register() {
     const navigate = useNavigate()
