@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { UserProvider } from "../hooks/UserContext";
 
-import { Home, Products, Register, Login } from "../containers";
+import { Home, Products, Register, Login, Cart } from "../containers";
 
 
 export const router = createBrowserRouter([
@@ -32,6 +32,12 @@ export const router = createBrowserRouter([
         path: '/cadastro',
         element: <UserProvider>
                        <Register />
+                 </UserProvider>,
+    },
+    {
+        path: '/carrinho',
+        element: <UserProvider>
+                       <Cart />
                  </UserProvider>,
     }
 

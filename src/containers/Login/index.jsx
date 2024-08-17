@@ -50,7 +50,7 @@ export function Login() {
             },
         );
 
-      console.log(response)
+      
         putUserData(response)
 
     };
