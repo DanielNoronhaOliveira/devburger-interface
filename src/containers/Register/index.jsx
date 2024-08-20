@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import  api  from '../../services/api';
 
 import { Container, Form, ContainerInput, LeftContainer, RightContainer, Title, Link } from './styles';
-import Logo from '../../assets/logo.png';
+import Logo from '../../assets/Cart-Img.png';
 
 import { Button } from '../../components';
 
