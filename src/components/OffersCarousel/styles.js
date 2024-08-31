@@ -1,66 +1,47 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 35px;
-    padding: 35px 0;
+     .carousel-item {
+    padding-right: 40px;
+  }
 
-    .rec.rec-arrow {
-        background-color: #9758a6;
-        color: #efefef;
-        border: none;
-    }
+  overflow-x: hidden;
 
-    .rec.rec-arrow:hover {
-        border: 2px solid #9758a6;
-        background-color: #efefef;
-        color: #9758a6;
-    }
+  .react-multi-carousel-list {
+    overflow: visible;
+  }
 
-    .rec.rec-arrow:disabled {
-        border: none;
-        background-color: #bebebf;
-        color: #efefef;
-    }
-`
-export const CategoryImg = styled.img`
-  
-`
-export const ContainerItems = styled.div`
-    display: flex;
-    flex-direction: column;
+  .react-multiple-carousel__arrow--left {
+    left: 15px;
+    top: 10px;
+  }
 
-    p {
-        font-style: normal;
-        font-weight: bold;
-        font-size: 18px;
-        line-height: 120%;
+  .react-multiple-carousel__arrow--right {
+    top: 10px;
+  }
 
-        color: #424242;
-    }
-`
-export const Image = styled.img`
-    width: 200px;
-    border-radius: 10px;
-    margin-bottom: 16px;
-`
-export const Button = styled.button`
-    margin-top: 16px;
-    background: #9758a6;
-    border-radius: 8px;
+  padding-left: 40px;
+  padding-bottom: 40px;
 
-    height: 50px;
-    border: none;
+   `
+   export const Title = styled.h2`
+   font-size: 32px;
+   font-weight: 800;
+   color: #61A120;
+   padding-bottom: 12px;
+   position: relative;
+   text-align: center;
+   margin-bottom: 40px;
+   margin-top: 20px;
 
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 100%;
-    text-align: center;
-    color: #ffffff;
+   &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 56px;
+    height: 4px;
+    background-color: #61A120;
+    left: calc(50% - 28px);
+  }
+   `
 
-    cursor: pointer;
-`

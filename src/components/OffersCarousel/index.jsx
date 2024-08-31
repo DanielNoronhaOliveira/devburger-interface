@@ -1,57 +1,74 @@
-import  Offers from '../../assets/oferta.png'
 
 
-import { Container, CategoryImg, ContainerItems, Image, Button } from './styles'
+
+import { Container, Title } from './styles'
 import api from '../../services/api'
 import { useEffect, useState } from 'react'
 import Carousel from 'react-elastic-carousel'
-import formatCurrency from '../../utils/formatCurrency'
+import 'react-multi-carousel/lib/styles.css'
+import { CardProduct } from '../CardProduct'
+import { formatCurrency } from '../../utils/formatCurrency'
 
-export function OffersCarousel(){
-    const [offers, setOffers] = useState([])
 
-     useEffect(() => {
-        async function loadOffers(){
-            const {data} = await api.get('products')
+export function OffersCarousel() {
+  const [offers, setOffers] = useState([])
 
-            const onlyOffers = data
-            .filter(product => product.offer)
-            .map(product => {
-                return { ...product, formatedPrice: formatCurrency(product.price)}
-            })
+  useEffect(() => {
+    async function loadProducts() {
+      const { data } = await api.get('/products')
 
-            
-            setOffers(onlyOffers)
-        }
-        
-        loadOffers()
-     }, [])
+      const onlyOffers = data
+      .filter((product) => product.offer)
+      .map((product) => ({
+        currencyValue: formatCurrency(product.price),
+        ...product,
+      }));
 
-     const breakPoints = [
-        {width: 1, itemsToShow: 1},
-        {width: 400, itemsToShow: 2},
-        {width: 600, itemsToShow: 3},
-        {width: 900, itemsToShow: 4},
-        {width: 1300, itemsToShow: 5},
-     ]
-    return (
-        <Container>
-            <CategoryImg src={Offers} alt="logo da oferta" />
+      setOffers(onlyOffers)
+    }
 
-            <Carousel itemsToShow={5}
-             style={{width: '90%'}}
-             breakPoints={breakPoints}>
-                {offers &&
-                  offers.map(product => {
-                    <ContainerItems key={product.id}>
-                        <Image src={product.url} alt='foto do produto'/>
-                        <p>{product.name}</p>
-                        <p>{product.formatedPrice}</p>
-                        <Button>peça agora</Button>
-                    </ContainerItems>
-                  })}
+    loadProducts()
+  }, [])
 
-            </Carousel>
-        </Container>
-    )
+
+  const responsive = {
+
+
+    desktop: {
+      breakpoint: { max: 3000, min: 1280 },
+      items: 4,
+
+    },
+    tablet: {
+      breakpoint: { max: 1280, min: 690 },
+      items: 3,
+
+    },
+    mobile: {
+      breakpoint: { max: 690, min: 0 },
+      items: 2,
+
+    },
+
+  };
+
+  return (
+    <Container>
+      <Title>Oferta do dia</Title>
+      <Carousel
+        responsive={responsive}
+        infinite={true}
+        partialVisbile={false}
+        itemClass='carousel-item'
+
+      >
+
+
+        {offers.map((product) => (
+          <CardProduct key={product.id} product={product}/>
+        ))}
+
+      </Carousel>
+    </Container>
+  )
 }

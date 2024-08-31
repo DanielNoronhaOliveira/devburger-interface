@@ -1,42 +1,46 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-   background: #ffffff;
-   box-shadow: 0px 30px 60px rgba(57, 57, 57, 0.1);
-   border-radius: 30px;
    display: flex;
-   gap: 12px;
-   padding: 16px;
-   width: max-content;
+   flex-direction: column;
+   align-items: center;
+   gap: 40px;
+   padding: 20px;
+   background-color: #ffffff;
+   border-radius: 8px;
+   cursor: grab;
+   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  
 
    div {
+    width: 100%;
+    height: 80px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 5px;
+
+    p {
+      font-size: 18px;
+      color: #ff8c05;
+      line-height: 20px;
+      font-weight: 700;
+      margin-top: 40px;
+    }
+
+    strong {
+      font-size: 22px;
+      color: #363636;
+      font-weight: 800;
+      line-height: 20px;
+    }
    }
 
+`;
+
+export const CardImage = styled.img`
+ height: 100px;
+ position: absolute;
+ top: -50px;
 `
 
-export const Image = styled.img`
-  width: 150px;
-`
-
-export const ProductName = styled.p`
-   font-size: normal;
-   font-weight: normal;
-   font-size: 16px;
-   line-height: 19px;
-
-   color: #000000;
-`
-
-export const ProductPrice = styled.p`
-   font-size: normal;
-   font-weight: 500;
-   font-size: 18px;
-   line-height: 12px;
-   margin-top: 30px;
-
-   color: #000000;
-
-`

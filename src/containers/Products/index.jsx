@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import ProductsLogo from '../../assets/products-log.png'
 import { CardProduct } from '../../components'
-import formatCurrency from '../../utils/formatCurrency'
+import {formatCurrency} from '../../utils/formatCurrency'
 import api from '../../services/api'
 import { Container, ProductsImg, CategoryButton, CategoriesMenu, ProductsContainer } from './styles'
 export function Products() {

@@ -1,6 +1,6 @@
 import { useCart } from '../../hooks/CartContext'
 import { Container, Header, Body } from './styles'
-import formatCurrency from '../../utils/formatCurrency'
+import {formatCurrency} from '../../utils/formatCurrency'
 
 export function CartItems() {
     const { cartProducts } = useCart()

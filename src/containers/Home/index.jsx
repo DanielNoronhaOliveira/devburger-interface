@@ -1,16 +1,23 @@
 
-import HomeLogo from '../../assets/home-logo.svg'
-import { CategoryCarousel, OffersCarousel } from '../../components'
-import { Container, HomeImg } from './styles'
 
-export function Home(){
+import { CategoriesCarousel, OffersCarousel } from '../../components'
+import { Banner, Container  } from './styles'
+
+export function Home() {
 
     return (
-        <Container>
-            <HomeImg src={HomeLogo} alt="logo da home" />
-           <CategoryCarousel />
-           <OffersCarousel />
-        </Container>
+        <main>
+            <Banner>
+                <h1>Bem-vindo(a)!</h1>
+            </Banner>
+            <Container>
+              <div>
+                <CategoriesCarousel />
+                <OffersCarousel />
+              </div>
+            </Container>
+          
+        </main>
     )
 }
 
