@@ -44,4 +44,3 @@ export const Container = styled.div`
     left: calc(50% - 28px);
   }
    `
-

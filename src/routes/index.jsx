@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { UserProvider } from "../hooks/UserContext";
 
-import { Home, Products, Register, Login, Cart } from "../containers";
+import { Home, Menu, Register, Login, Cart } from "../containers";
 
 
 export const router = createBrowserRouter([
@@ -16,9 +16,9 @@ export const router = createBrowserRouter([
     },
     {
        
-        path: '/produtos',
+        path: '/cardapio',
         element: <UserProvider>
-                       <Products />
+                       <Menu />
                  </UserProvider>,
       
     },

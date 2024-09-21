@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import BannerHome from '../../assets/home-logo.svg'
+import  Background from '../../assets/backgroundLogin.png'
 
 
 export const Banner = styled.div`
@@ -23,7 +24,7 @@ export const Container = styled.section`
   rgba(255, 255, 255, 0.6),
   rgba(255, 255, 255, 0,6)
  ),
- url('$Background')
+ url('${Background}')
 `
 
 
