@@ -1,44 +1,44 @@
 import { createBrowserRouter } from "react-router-dom";
-import { UserProvider } from "../hooks/UserContext";
+//import { UserProvider } from "../hooks/UserContext";
 
 import { Home, Menu, Register, Login, Cart } from "../containers";
+import { Header } from "../components/Header";
 
 
 export const router = createBrowserRouter([
-    
+
     {
-       
+
         path: '/',
-        element: <UserProvider>
-                       <Home />
-                 </UserProvider>,
-      
+        element: (
+            <>
+                <Header />
+                <Home />
+            </>
+        ),
+
     },
     {
-       
+
         path: '/cardapio',
-        element: <UserProvider>
-                       <Menu />
-                 </UserProvider>,
-      
-    },
+        element:
+            <Menu />,
+     },
     {
         path: '/login',
-        element: <UserProvider>
-                       <Login />
-                 </UserProvider>,
+        element:
+            <Login />,
     },
     {
         path: '/cadastro',
-        element: <UserProvider>
-                       <Register />
-                 </UserProvider>,
+        element:
+            <Register />,
     },
     {
         path: '/carrinho',
-        element: <UserProvider>
-                       <Cart />
-                 </UserProvider>,
+        element:
+            <Cart />
+
     }
 
 ]);

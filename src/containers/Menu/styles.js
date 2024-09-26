@@ -65,8 +65,8 @@ export const CategoryButton =styled(Link)`
 `
 
 export const ProductContainer = styled.div`
-  display: flex;
-  grid-template-columns: repeat(3, 1fr);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
   padding: 40px;
   gap: 60px;
   justify-content: center;

@@ -5,16 +5,27 @@ import api from '../../services/api'
 import { Container, Banner, CategoryMenu, ProductContainer, CategoryButton } from './styles'
 import { formatCurrency } from '../../utils/formatCurrency'
 import { CardProduct } from '../../components/CardProduct'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export function Menu() {
     const [categories, setCategories] = useState([])
     const [products, setProducts] = useState([])
-    const [filteredproducts, setFilteredproducts] = useState([])
-    const [activeCategory, setActiveCategory] = useState(0)
+    const [filteredProducts, setFilteredProducts] = useState([])
 
     const navigate = useNavigate()
 
+    const { search} = useLocation()
+
+    const queryParams = new URLSearchParams(search)
+    
+    const [activeCategory, setActiveCategory] = useState(() => {
+        const categoryId = +queryParams.get('categoria')
+
+        if (categoryId) {
+            return categoryId
+        }
+        return 0
+    })
     useEffect(() => {
         async function loadCategories() {
             const { data } = await api.get('/categories')
@@ -32,7 +43,7 @@ export function Menu() {
                 currencyValue: formatCurrency(product.price),
                 ...product,
             }))
-
+            
             setProducts(newProducts)
 
         }
@@ -43,16 +54,21 @@ export function Menu() {
 
     }, []);
 
-    useEffect(() => {
-        if (activeCategory === 0) {
-            setFilteredproducts(products)
+   useEffect(() => {
+
+    
+
+        if(activeCategory === 0) {
+            setFilteredProducts(products)
         } else {
             const newFilteredProducts = products.filter(
                 (product) => product.category_id === activeCategory,
             )
-            setFilteredproducts(newFilteredProducts)
+            
+            setFilteredProducts(newFilteredProducts)
         }
-    }, [products, activeCategory])
+    }, [products, activeCategory])  
+  
 
     return (
         <Container>
@@ -89,7 +105,7 @@ export function Menu() {
             </CategoryMenu>
 
             <ProductContainer>
-                {filteredproducts.map((product) => (
+                {filteredProducts.map((product) => (
                     <CardProduct product={product} key={product.id} />
                 ))}
             </ProductContainer>

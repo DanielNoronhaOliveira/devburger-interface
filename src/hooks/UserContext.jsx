@@ -7,28 +7,33 @@ import PropTypes from 'prop-types'
 const UserContext = createContext({})
 
 export const UserProvider = ({children}) => {
-   const [userData, setUserData] = useState([])
+   const [userInfo, setUserData] = useState([])
+   
 
    const putUserData = async userInfo => {
     setUserData(userInfo)
 
-    await localStorage.setItem('codeburger:userData', JSON.stringify(userInfo))
+    await localStorage.setItem('devburger:userData', JSON.stringify(userInfo))
+   }
+
+   const logout = () => {
+    setUserData({})
+    localStorage.removeItem('devburger:userData')
    }
 
    useEffect(() => {
-    const loadUserData = async () => {
-        const clientInfo = await localStorage.getItem('codeburger:userData')
+    const userInfoLocalStorage= localStorage.getItem('devburger:userData')
+       
         
-        if (clientInfo) {
-            setUserData(JSON.parse(clientInfo))
+        if (userInfoLocalStorage) {
+            setUserData(JSON.parse(userInfoLocalStorage))
         }
-    }
+    
 
-    loadUserData()
    },[])
 
     return (
-        <UserContext.Provider value={{putUserData, userData}}>
+        <UserContext.Provider value={{putUserData, userInfo, logout}}>
             {children}
         </UserContext.Provider>
     )
