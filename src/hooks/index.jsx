@@ -6,7 +6,6 @@ import { CartProvider } from './CartContext'
 const AppProvider = ({ children }) => (
     <UserProvider>
         <CartProvider>{children}</CartProvider>
-
     </UserProvider>
 )
 

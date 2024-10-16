@@ -7,7 +7,7 @@ import axios from "axios";
  apiCodeBurger.interceptors.request.use(async (config) => {
     const userData = await localStorage.getItem('devburger:userData');
     console.log(userData)
-    const token = userData && JSON.parse(userData).data.token;
+    const token = userData && JSON.parse(userData).token;
     config.headers.authorization = `Bearer ${token}`;
     return config
 });

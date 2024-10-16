@@ -1,65 +1,114 @@
 import  {  createContext, useContext, useEffect, useState} from "react";
-
 import PropTypes from 'prop-types'
+
 
 const CartContext = createContext({})
 
 export const CartProvider = ({children}) => {
    const [cartProducts, setCartProducts] = useState([])
 
-   const putProductInCart = async product => {
-     const cartIndex = cartProducts.findIndex(prd => prd.id === product.id)
+   const putProductInCart = (product) => {
+     const cartIndex = cartProducts.findIndex((prd) => prd.id === product.id)
+      
+     let newProductsInCart = []
 
-     let newCartProducts = []
      if (cartIndex >= 0) {
-       newCartProducts = cartProducts
+        newProductsInCart = cartProducts
 
-        newCartProducts[cartIndex].quantity =
-         newCartProducts[cartIndex].quantity + 1
+        newProductsInCart[cartIndex].quantity =
+         newProductsInCart[cartIndex].quantity + 1
 
-         setCartProducts(newCartProducts)
-     }
-     else {
+         setCartProducts(newProductsInCart)
+     } else {
         product.quantity = 1
-        newCartProducts = [...cartProducts, product]
-        setCartProducts(newCartProducts)
+        newProductsInCart = [...cartProducts, product]
+        setCartProducts(newProductsInCart)
      }
-     await localStorage.setItem(
-        'codeburger:cartInfo', 
-        JSON.stringify(newCartProducts)
-    )
+
+     updateLocalStorage(newProductsInCart)
+   }
+
+  
+
+   const clearCart = () => {
+    setCartProducts([])
+
+    updateLocalStorage([])
+   }
+
+   const deleteProduct = (productId) => {
+     const newCart = cartProducts.filter((prd) => prd.id !== productId)
+
+     setCartProducts(newCart)
+     updateLocalStorage(newCart
+
+     )
+   }
+
+   const increaseProduct = (productId) => {
+     const newCart = cartProducts.map((prd) => {
+        return prd.id === productId
+          ? {...prd, quantity: prd.quantity + 1 }
+          : prd
+     })
+
+     setCartProducts(newCart)
+     updateLocalStorage(newCart)
+   }
+
+   const decreaseProduct = (productId) => {
+    const cartIndex = cartProducts.findIndex((prd) => prd.id === productId)
+
+    if (cartProducts[cartIndex].quantity > 1) {
+        const newCart = cartProducts.map((prd) => {
+            return prd.id === productId
+            ? {...prd, quantity: prd.quantity - 1}
+            : prd
+        })
+
+        setCartProducts(newCart)
+        updateLocalStorage(newCart)
+    } else {
+        deleteProduct(productId)
+    }
+   }
+
+   const updateLocalStorage = (products) => {
+    localStorage.setItem('devburger:cartInfo', JSON.stringify(products))
    }
 
    useEffect(() => {
-    const loadUserData = async () => {
-        const clientCartData = await localStorage.getItem('codeburger:cartInfo')
-        
-        if (clientCartData) {
-            setCartProducts(JSON.parse(clientCartData))
-        }
+    const clientCartData = localStorage.getItem('devburger:cartInfo')
+
+    if (clientCartData) {
+        setCartProducts(JSON.parse(clientCartData))
     }
+   }, [])
 
-    loadUserData()
-   },[])
-
-    return (
-        <CartContext.Provider value={{putProductInCart, cartProducts}}>
-            {children}
-        </CartContext.Provider>
-    )
+   return (
+    <CartContext.Provider 
+       value={{
+        cartProducts,
+        putProductInCart,
+        clearCart,
+        decreaseProduct,
+        increaseProduct,
+        deleteProduct,
+       }}
+    >
+        {children}
+    </CartContext.Provider>
+   )
 }
 
 export const useCart = () => {
     const context = useContext(CartContext)
 
-    if(!context) {
-        throw new Error('useUser deve ser usado com UserContex')
+    if (!context) {
+        throw new Error('useCart deve ser usado com context')
     }
-
     return context
 }
-
 CartProvider.propTypes = {
     children: PropTypes.node
 }
-

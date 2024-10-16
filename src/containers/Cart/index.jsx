@@ -1,14 +1,22 @@
 
-import CartLogo from '../../assets/logo.png'
-import { CartItems } from '../../components'
-import { Container, CartImg } from './styles'
+import Logo from '../../assets/Cart-Img.png'
+import { CartItems, CartResume } from '../../components'
 
-export function Cart(){
+import { Container, Banner, Title, Content } from './styles'
+
+export function Cart() {
 
     return (
         <Container>
-            <CartImg src={CartLogo} alt="logo do carrinho" />
-           <CartItems />
+           
+            <Banner>
+            <img src={Logo} alt='logo-devbuger' /> 
+            </Banner>
+            <Title>Checkout - Pedidos</Title>
+            <Content>
+              <CartItems/>
+              <CartResume/>
+            </Content>
         </Container>
     )
 }
