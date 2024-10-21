@@ -4,12 +4,13 @@ import  {  createContext, useContext, useEffect, useState} from "react";
 
 import PropTypes from 'prop-types'
 
+
 const UserContext = createContext({})
 
 export const UserProvider = ({children}) => {
    const [userInfo, setUserData] = useState([])
+  
    
-
    const putUserData = async userInfo => {
     setUserData(userInfo)
 
@@ -23,7 +24,7 @@ export const UserProvider = ({children}) => {
 
    useEffect(() => {
     const userInfoLocalStorage= localStorage.getItem('devburger:userData')
-       
+      
         
         if (userInfoLocalStorage) {
             setUserData(JSON.parse(userInfoLocalStorage))
@@ -37,6 +38,8 @@ export const UserProvider = ({children}) => {
             {children}
         </UserContext.Provider>
     )
+
+
 }
 
 export const useUser = () => {
@@ -48,6 +51,7 @@ export const useUser = () => {
 
     return context
 }
+
 
 UserProvider.propTypes = {
     children: PropTypes.node

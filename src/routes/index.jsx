@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 //import { UserProvider } from "../hooks/UserContext";
 
-import { Home, Menu, Register, Login, Cart, CompletePayment, Checkout } from "../containers";
+import { Home, Menu, Register, Login, Cart, CompletePayment, Checkout, Admin } from "../containers";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 
@@ -52,6 +52,13 @@ export const router = createBrowserRouter([
         element:
             <CompletePayment />
 
+    },
+    {
+        path: '/pedidos',
+        element:
+            <Admin />
+
     }
+
 
 ]);

@@ -14,7 +14,7 @@ export function CartResume() {
 
     const navigate = useNavigate()
 
-    const { cartProducts, clearCart } = useCart()
+    const { cartProducts } = useCart()
 
     useEffect(() => {
         const sumAllItems = cartProducts.reduce((acc, current) => {
