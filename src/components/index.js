@@ -9,6 +9,7 @@ export * from './CartItems'
 export * from './Table'
 export * from './CartResume'
 export * from './CheckoutForm'
+export * from './SideMenuAdmin'
 
 
 

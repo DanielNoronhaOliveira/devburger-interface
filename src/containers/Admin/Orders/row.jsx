@@ -6,20 +6,38 @@ import IconButton from '@mui/material/IconButton';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
+import api from '../../../services/api'
 
-import {Container} from './styles'
+import {ReactSelectStyle} from './styles'
 import PropTypes from 'prop-types';
+import status from './order-status';
 
- function Row({row}){
+ function Row({row, setOrders, orders}){
   const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+ 
+ async function setNewStatus(id, status) {
+  setIsLoading(true)
+  try {
+    await api.put(`orders/${id}`, { status })
+   
+    const newOrders = orders.map(order => {
+      return order._id === id ? { ...order, status } : order
+    })
+    setOrders(newOrders)
+
+  } catch (err) {
+    console.error(err)
+  } finally {
+    setIsLoading(false)
+  }
+ }
 
   return (
     <Fragment>
@@ -38,7 +56,20 @@ import PropTypes from 'prop-types';
         </TableCell>
         <TableCell>{row.name}</TableCell>
         <TableCell>{row.date}</TableCell>
-        <TableCell>{row.status}</TableCell>
+        <TableCell>
+          <ReactSelectStyle 
+          options={status.filter(sts => sts.value !== 'Todos')}
+          menuPortalTarget={document.body}
+          placeholder="status"
+          defaultValue={
+            status.find(option => option.value === row.status) || null
+          }
+          onChange={newStatus => {
+            setNewStatus(row.orderId, newStatus.value)
+          }}
+          isLoading={isLoading}
+          />
+        </TableCell>
        
       </TableRow>
       <TableRow>
@@ -58,18 +89,23 @@ import PropTypes from 'prop-types';
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {row.products.map(productRow => (
-                    <TableRow key={productRow.id}>
+                {/* {row.products.map(productsRow => (   
+                    <TableRow key={productsRow.id}>
                       <TableCell component="th" scope="row">
-                        {productRow.quantity}
+                        {productsRow.quantity}
                       </TableCell>
-                      <TableCell>{productRow.name}</TableCell>
-                      <TableCell>{productRow.category}</TableCell>
+                      <TableCell>{productsRow.name}</TableCell>
+                      <TableCell>{productsRow.category}</TableCell>
                       <TableCell>
-                       <img src={productRow.url} alt='imagem-produto'/>
+                       <ProductsImg
+                        src={productsRow.url} 
+                        alt='imagem-produto'
+                        />
                       </TableCell>
                     </TableRow>
-                  ))}
+                    
+                  ))} */ }
+                
                 </TableBody>
               </Table>
             </Box>
@@ -81,6 +117,8 @@ import PropTypes from 'prop-types';
 }
 
 Row.propTypes = {
+  orders: PropTypes.array,
+  setOrders: PropTypes.func,
   row: PropTypes.shape({
     name: PropTypes.string.isRequired,
     orderId: PropTypes.string.isRequired,

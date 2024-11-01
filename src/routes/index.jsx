@@ -4,6 +4,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { Home, Menu, Register, Login, Cart, CompletePayment, Checkout, Admin } from "../containers";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
+import paths from "../constants/paths";
 
 
 export const router = createBrowserRouter([
@@ -54,11 +55,24 @@ export const router = createBrowserRouter([
 
     },
     {
-        path: '/pedidos',
+        path: (paths.Order) ,
         element:
             <Admin />
 
-    }
+    },
+    {
+        path: (paths.Products) ,
+        element:
+            <Admin />
+
+    },
+    {
+        path: (paths.NewProduct) ,
+        element:
+            <Admin />
+
+    },
+   
 
 
 ]);
