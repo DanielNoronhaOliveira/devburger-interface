@@ -4,8 +4,11 @@ import styled from "styled-components";
 export const Container = styled.div`
   background-color: #1f1f1f;
   width: 100%;
-  height: 72px;
-  padding: 0 56px;
+
+  height: 68px; 
+ //padding: 0 56px; 
+ padding: 10px;
+ 
 `
 export const Content = styled.div`
   display: flex;
@@ -13,8 +16,8 @@ export const Content = styled.div`
   justify-content: space-between;
 
   width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
+  //max-width: 1280px;
+ margin: 0 auto;
 `
 export const Navigation = styled.nav`
   display: flex;

@@ -9,6 +9,7 @@ export const Banner = styled.div`
   background-position: center;
   height: 480px;
 
+
   h1 {
     font-family: "Road Rage", sans-serif;
     font-size: 80px;
@@ -16,6 +17,14 @@ export const Banner = styled.div`
     position: absolute;
     right: 20%;
     top: 10%;
+  }
+
+  @media (max-width: 610px){
+    height: 150px;
+
+    h1{
+     font-size: 60px;
+    }
   }
 `
 

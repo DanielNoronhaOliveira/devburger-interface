@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Container, Img, EditIconStyles } from './styles'
-//import api from '../../../services/api'
+import api from '../../../services/api'
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -22,7 +22,7 @@ export function ListProducts() {
     
     useEffect(() => {
         async function loadOrders() {
-           // const { data } = await api.get('products')
+            const { data } = await api.get('products')
 
             setProducts(data)
 

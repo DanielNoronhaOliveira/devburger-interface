@@ -4,6 +4,11 @@ export const ProductImage = styled.img`
   height: 80px;
   width: 80px;
   border-radius: 16px;
+
+  @media (max-width: 600px){
+    height: 60px;
+    width: 60px;
+  }  
 `
 export const ButtonGroup = styled.div`
   display: flex;
@@ -26,6 +31,8 @@ export const ButtonGroup = styled.div`
         background-color: #6f357c;
     }
   }
+
+  
 `
 export const EmptyCart = styled.p`
   font-size: 20px;

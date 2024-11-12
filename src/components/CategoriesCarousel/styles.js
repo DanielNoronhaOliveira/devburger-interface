@@ -18,6 +18,7 @@ export const Container = styled.div`
 `
 export const Title = styled.h2`
   font-size: 32px;
+  
   font-weight: 800;
   color: #9758a6;
   padding-bottom: 12px;
@@ -35,6 +36,11 @@ export const Title = styled.h2`
     background-color: #9758a6;
     left: calc(50% - 28px);
   }
+
+  @media (max-width: 610px){
+    font-size:28px ;
+
+  }
 `
 export const ContainerItems = styled.div`
    background: url('${(props) => props.imageUrl}');
@@ -46,10 +52,15 @@ export const ContainerItems = styled.div`
    display: flex;
    align-items: center;
    padding: 20px 10px;
+   
    width: 100%;
    height: 250px;
+  
 
-    
+  @media (max-width: 610px){
+    height: 210px;
+    width: 180px;
+  } 
     
 `
 
@@ -58,7 +69,8 @@ export const CategoryButton = styled(Link)`
   background-color: rgba(0, 0, 0, 0.5);
   padding: 10px 30px;
   border-radius: 30px;
-  font-size: 22.5px;
+  //font-size: 22.5px;
+  font-size: 15px;
   font-weight: bold;
   margin-top: 50px;
   font-weight: 500;

@@ -6,6 +6,7 @@ import { Container, Banner, CategoryMenu, ProductContainer, CategoryButton } fro
 import { formatCurrency } from '../../utils/formatCurrency'
 import { CardProduct } from '../../components/CardProduct'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { Header } from '../../components'
 
 export function Menu() {
     const [categories, setCategories] = useState([])
@@ -71,6 +72,8 @@ export function Menu() {
   
 
     return (
+        <>
+        <Header/>
         <Container>
             <Banner>
                 <h1>
@@ -110,6 +113,7 @@ export function Menu() {
                 ))}
             </ProductContainer>
         </Container>
+     </>
     )
 }
 

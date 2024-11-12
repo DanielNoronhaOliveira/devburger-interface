@@ -4,8 +4,11 @@ import backgroundEsquerdo from '../../assets/backgroundEsquerdo.png'
 
 export const Container = styled.div`
   width: 100%;
- 
- min-height: 100vh;
+  min-height: 100vh;
+
+  @media (max-width: 200px) {
+    width: 100%;
+  }
 `
 export const Banner = styled.div`
  background: url('${backgroundEsquerdo}');
@@ -49,6 +52,13 @@ export const Content = styled.div`
   max-width: 1280px;
   padding: 40px;
   margin: 0 auto;
+
+ @media (max-width: 788px){
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+  padding: 30px;
+ }
 `
 
 
@@ -58,4 +68,3 @@ export const Content = styled.div`
 
 
 
- 

@@ -1,41 +1,46 @@
 import styled from "styled-components";
 import BannerHamburger from '../../assets/banner-hamburger.svg'
-import  Background from '../../assets/backgroundLogin.png'
+
 import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   width: 100%;
-  min-height: 100vh;
-  background-color:#f0f0f0;
+ // max-width: 100vw;
+  overflow-x: hidden;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //min-height: 100vh;
+  
 
-  background: linear-gradient(
-  rgba(255, 255, 255, 0.6),
-  rgba(255, 255, 255, 0,6)
- ),
- url('${Background}');
+ 
 `
 export const Banner = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 480px;
-  width: 100%;
-  position: relative;
+ width: 100%;
 
   background: url('${BannerHamburger }') no-repeat;
   background-color: #1f1f1f;
   background-position: center;
   background-size: cover;
+  position: relative;
+ 
 
   h1 {
     font-family: 'Road Rage', sans-serif;
     font-size: 80px;
+   
     line-height: 65px;
     position: absolute;
     color: #fff;
+    text-align: center;
 
     right: 20%;
-    top: 30%;
+    top: 30%;  
     
     span {
       display: block;
@@ -43,13 +48,35 @@ export const Banner = styled.div`
       font-size: 20px;
     }
 
+
   }
+
+  @media (max-width: 600px){
+    
+   h1 {
+    font-size: 40px;
+    line-height: 50px;
+    left: 35%;
+    top: 15%;
+
+    span{
+      font-size: 16px;
+    }
+   }
+}
+
 `
 export const CategoryMenu = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
   justify-content: center;
-  gap: 50px;
-  margin-top: 30px;
+  width: 100%;
+  max-width: 100vh;
+  //overflow-x: auto;
+  padding: 25px;
+  //justify-content: center;
+ 
 `
 export const CategoryButton =styled(Link)`
   text-decoration: none;
@@ -72,5 +99,16 @@ export const ProductContainer = styled.div`
   justify-content: center;
   max-width: 1280px;
   margin: 50px auto;
+
+ @media (max-width:795px  ) { //569
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+} 
+
+@media (max-width:569px  ) { 
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+} 
+
 
 `
